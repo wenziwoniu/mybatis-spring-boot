@@ -1,0 +1,18 @@
+debug:
+  true
+
+info:
+  name: mybatis-spring-boot-default
+  contact: mybatis-spring-boot-default
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: mybatis-spring-boot
+  profiles:
+    active: dev
+
+logging:
+  config: classpath:config/log4j2.xml

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<context id="context"
+		targetRuntime="com.vivebest.toolkit.mybatis.generator.codegen.mybatis3.MyIntrospectedTableMyBatis3Impl">
+		<!-- 指定生成的java文件的编码,没有直接生成到项目时中文可能会乱码 -->
+		<property name="javaFileEncoding" value="UTF-8" />
+
+		<!-- 生成DAO的包名和位置 -->
+		<property name="daoTargetPackage" value="com.vivebest.mybatis.spring.boot.dao" />
+
+		<!-- 生成Dao插件 -->
+		<plugin type="com.vivebest.toolkit.mybatis.generator.api.DaoPluginAdapter" />
+
+		<!-- 生成Entity ToString方法插件 -->
+		<plugin
+			type="com.vivebest.toolkit.mybatis.generator.api.ToStringPluginAdapter" />
+
+		<!-- 生成Service插件 -->
+		<plugin
+			type="com.vivebest.toolkit.mybatis.generator.api.ServicePluginAdapter">
+			<property name="serviceTargetPackage" value="com.vivebest.mybatis.spring.boot.service" />
+			<property name="serviceImplTargetPackage" value="com.vivebest.mybatis.spring.boot.service.impl" />
+			<property name="serviceTargetProject" value="mybatis-spring-boot/src/main/java" />
+			<property name="enableAnnotation" value="true" />
+		</plugin>
+
+		<!-- 生成entity注释 -->
+		<commentGenerator type="com.vivebest.toolkit.mybatis.generator.api.MyCommentGenerator" />
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/jinghua" userId="root"
+			password="123456">
+		</jdbcConnection>
+
+
+		<!-- 生成模型的包名和位置 -->
+		<javaModelGenerator targetPackage="com.vivebest.mybatis.spring.boot.entity"
+			targetProject="mybatis-spring-boot/src/main/java" />
+
+		<!-- 生成映射文件的包名和位置 -->
+		<sqlMapGenerator targetPackage="sqlmap"
+			targetProject="mybatis-spring-boot/src/main/resources" />
+
+		<table schema="jinghua" tableName="um_user" domainObjectName="User" />
+	</context>
+</generatorConfiguration>

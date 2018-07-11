@@ -1,0 +1,48 @@
+info:
+  name: mybatis-spring-boot-dev
+  contact: mybatis-spring-boot-dev
+
+server:
+  port: 8001
+  address: localhost
+  sessionTimeout: 100000
+  contextPath: /mybatis-boot
+  
+#druid datasource配置
+druid:
+  url: jdbc:mysql://192.168.72.1/mavenpractice?characterEncoding=UTF-8&useUnicode=true&useSSL=true
+  driverClassName: com.mysql.jdbc.Driver
+  username: mavenpractice
+  password: mavenpractice
+  maxActive: 100
+  initialSize: 1
+  minIdle: 1
+  maxWait: 60000
+  maxIdle: 15
+  timeBetweenEvictionRunsMillis: 60000
+  minEvictableIdleTimeMillis: 300000
+  validationQuery: SELECT 'x'
+  testWhileIdle: true
+  testOnBorrow: false
+  testOnReturn: false
+  maxOpenPreparedStatements: 20
+  removeAbandoned: true
+  removeAbandonedTimeout: 1800
+  logAbandoned: true
+  filters: stat,wall,slf4j
+    
+#MyBatis
+mybatis:
+  typeAliasesPackage: com.vivebest.spring.boot.mybatis.entity
+  mapperLocations: classpath:/sqlmap/**/*-Mapper.xml
+  configLocation: classpath:/config/mybatis-config.xml
+  
+#threadpool
+web.threadpool:
+  corePoolSize: 100
+  maxPoolSize: 800
+  keepAliveSeconds: 60
+  queueCapacity: 300
+  allowCoreThreadTimeout: true
+  awaitTerminationSeconds: 60
+  waitForTaskToCompleteOnShutdown: true

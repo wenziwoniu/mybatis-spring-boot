@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" monitorInterval="5">
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5p %c{1}(%F:%L) - %m%n" />
+		</Console>
+
+		<RollingFile name="fixedTimeFileAppender" fileName="logs/spring-boot.log"
+			filePattern="logs/spring-boot.log.%d{yyyy-MM-dd}.%i.log.gz">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5p %c{2}(%F:%L) - %m%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="512 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="512" />
+		</RollingFile>
+
+		<RollingFile name="myBatisFileAppender" fileName="logs/mybatis.log"
+			filePattern="logs/mybatis.log.%d{yyyy-MM-dd}.%i.log.gz">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5p %c{1}(%F:%L) - %m%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="512 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="512" />
+		</RollingFile>
+
+		<Async name="async" bufferSize="512" includeLocation="true">
+			<AppenderRef ref="fixedTimeFileAppender" />
+		</Async>
+
+		<Async name="myBatis" bufferSize="512" includeLocation="true">
+			<AppenderRef ref="myBatisFileAppender" />
+			<AppenderRef ref="console" />
+		</Async>
+	</Appenders>
+
+	<Loggers>
+		<Logger name="com.vivebest" level="info" additivity="false">
+			<AppenderRef ref="async" />
+			<AppenderRef ref="console" />
+		</Logger>
+
+		<Logger name="org.apache.ibatis" level="info" additivity="false">
+			<AppenderRef ref="myBatis" />
+			<AppenderRef ref="console" />
+		</Logger>
+
+		<Logger name="org.mybatis" level="info" additivity="false">
+			<AppenderRef ref="myBatis" />
+			<AppenderRef ref="console" />
+		</Logger>
+
+		<Logger name="com.vivebest.mybatis.spring.boot.dao" level="debug"
+			additivity="false">
+			<AppenderRef ref="myBatis" />
+			<AppenderRef ref="console" />
+		</Logger>
+
+		<Root level="info">
+			<AppenderRef ref="async" />
+			<AppenderRef ref="console" />
+		</Root>
+	</Loggers>
+</Configuration>

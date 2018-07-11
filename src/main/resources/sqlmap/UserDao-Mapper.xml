@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vivebest.mybatis.spring.boot.dao.UserDao" >
+  <resultMap id="basicResultMap" type="com.vivebest.mybatis.spring.boot.entity.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_code" property="userCode" jdbcType="VARCHAR" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="user_type" property="userType" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="organization_code" property="organizationCode" jdbcType="VARCHAR" />
+    <result column="create_name" property="createName" jdbcType="VARCHAR" />
+    <result column="modified_name" property="modifiedName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="baseColumnList" >
+    id, user_code, login_name, password, user_name, sex, age, phone, user_type, status, 
+    organization_code, create_name, modified_name, create_time, modified_time
+  </sql>
+  <select id="find" resultMap="basicResultMap" >
+    select
+    <include refid="baseColumnList" />
+    from um_user
+    <trim prefix="WHERE" prefixOverrides="AND" >
+      <if test="id!=null" >
+        AND  id=#{id,jdbcType=INTEGER}
+      </if>
+      <if test="userCode!=null" >
+        AND  user_code=#{userCode,jdbcType=VARCHAR}
+      </if>
+      <if test="loginName!=null" >
+        AND  login_name=#{loginName,jdbcType=VARCHAR}
+      </if>
+      <if test="password!=null" >
+        AND  password=#{password,jdbcType=VARCHAR}
+      </if>
+      <if test="userName!=null" >
+        AND  user_name=#{userName,jdbcType=VARCHAR}
+      </if>
+      <if test="sex!=null" >
+        AND  sex=#{sex,jdbcType=INTEGER}
+      </if>
+      <if test="age!=null" >
+        AND  age=#{age,jdbcType=INTEGER}
+      </if>
+      <if test="phone!=null" >
+        AND  phone=#{phone,jdbcType=VARCHAR}
+      </if>
+      <if test="userType!=null" >
+        AND  user_type=#{userType,jdbcType=INTEGER}
+      </if>
+      <if test="status!=null" >
+        AND  status=#{status,jdbcType=INTEGER}
+      </if>
+      <if test="organizationCode!=null" >
+        AND  organization_code=#{organizationCode,jdbcType=VARCHAR}
+      </if>
+      <if test="createName!=null" >
+        AND  create_name=#{createName,jdbcType=VARCHAR}
+      </if>
+      <if test="modifiedName!=null" >
+        AND  modified_name=#{modifiedName,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime!=null" >
+        AND  create_time=#{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="modifiedTime!=null" >
+        AND  modified_time=#{modifiedTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </select>
+  <select id="findOne" resultMap="basicResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="baseColumnList" />
+    from um_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="delete" parameterType="java.lang.Integer" >
+    delete from um_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.vivebest.mybatis.spring.boot.entity.User" >
+    insert into um_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userCode != null" >
+        user_code,
+      </if>
+      <if test="loginName != null" >
+        login_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="organizationCode != null" >
+        organization_code,
+      </if>
+      <if test="createName != null" >
+        create_name,
+      </if>
+      <if test="modifiedName != null" >
+        modified_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifiedTime != null" >
+        modified_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null" >
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="organizationCode != null" >
+        #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null" >
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedName != null" >
+        #{modifiedName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null" >
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="findCount" resultType="java.lang.Integer" >
+    select count(*) from um_user
+    <trim prefix="WHERE" prefixOverrides="AND" >
+      <if test="id!=null" >
+        AND  id=#{id,jdbcType=INTEGER}
+      </if>
+      <if test="userCode!=null" >
+        AND  user_code=#{userCode,jdbcType=VARCHAR}
+      </if>
+      <if test="loginName!=null" >
+        AND  login_name=#{loginName,jdbcType=VARCHAR}
+      </if>
+      <if test="password!=null" >
+        AND  password=#{password,jdbcType=VARCHAR}
+      </if>
+      <if test="userName!=null" >
+        AND  user_name=#{userName,jdbcType=VARCHAR}
+      </if>
+      <if test="sex!=null" >
+        AND  sex=#{sex,jdbcType=INTEGER}
+      </if>
+      <if test="age!=null" >
+        AND  age=#{age,jdbcType=INTEGER}
+      </if>
+      <if test="phone!=null" >
+        AND  phone=#{phone,jdbcType=VARCHAR}
+      </if>
+      <if test="userType!=null" >
+        AND  user_type=#{userType,jdbcType=INTEGER}
+      </if>
+      <if test="status!=null" >
+        AND  status=#{status,jdbcType=INTEGER}
+      </if>
+      <if test="organizationCode!=null" >
+        AND  organization_code=#{organizationCode,jdbcType=VARCHAR}
+      </if>
+      <if test="createName!=null" >
+        AND  create_name=#{createName,jdbcType=VARCHAR}
+      </if>
+      <if test="modifiedName!=null" >
+        AND  modified_name=#{modifiedName,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime!=null" >
+        AND  create_time=#{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="modifiedTime!=null" >
+        AND  modified_time=#{modifiedTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </select>
+  <update id="update" parameterType="com.vivebest.mybatis.spring.boot.entity.User" >
+    update um_user
+    <set >
+      <if test="userCode != null" >
+        user_code = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null" >
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="organizationCode != null" >
+        organization_code = #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null" >
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedName != null" >
+        modified_name = #{modifiedName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null" >
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findAllByIds" resultMap="basicResultMap" >
+    select 
+    <include refid="baseColumnList" />
+    from um_user
+    <if test="_parameter" >
+      where id in
+      <foreach item="item" index="index" collection="list" open="(" separator="," close=")" >
+        #{item}
+      </foreach>
+    </if>
+  </select>
+</mapper>
